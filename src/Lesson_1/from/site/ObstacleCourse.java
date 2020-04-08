@@ -1,4 +1,4 @@
-package ht.from.site;
+package Lesson_1.from.site;
 
 class ObstacleCourse {
     private double []obstacles;

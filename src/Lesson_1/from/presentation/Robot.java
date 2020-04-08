@@ -1,4 +1,4 @@
-package ht.from.presentation;
+package Lesson_1.from.presentation;
 
 public class Robot implements Being {
     private int jumpConstraints;

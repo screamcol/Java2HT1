@@ -1,10 +1,10 @@
-package ht.from.presentation;
+package Lesson_1.from.presentation;
 
-public class Cat implements Being {
+public class Human implements Being {
     private int jumpConstraints;
     private int runConstraints;
 
-    Cat(int jumpConstraints, int runConstraints) {
+    Human(int jumpConstraints, int runConstraints) {
         this.jumpConstraints = jumpConstraints;
         this.runConstraints = runConstraints;
     }
@@ -12,11 +12,11 @@ public class Cat implements Being {
     @Override
     public boolean jump(int height) {
         if (height < jumpConstraints) {
-            System.out.println("Cat successfully jumped over");
+            System.out.println("Human successfully jumped over");
             return true;
         }
         else {
-            System.out.println("Cat couldn't jump");
+            System.out.println("Human couldn't jump");
             return false;
         }
     }
@@ -24,11 +24,11 @@ public class Cat implements Being {
     @Override
     public boolean run(int length) {
         if (length < runConstraints) {
-            System.out.println("Cat successfully run over");
+            System.out.println("Human successfully run over");
             return true;
         }
         else {
-            System.out.println("Cat couldn't run");
+            System.out.println("Human couldn't run");
             return false;
         }
     }
