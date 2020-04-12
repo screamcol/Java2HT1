@@ -1,4 +1,4 @@
-package ht.from.presentation;
+package Lesson_1.from.presentation;
 
 public class Wall implements Course {
     private int height;
