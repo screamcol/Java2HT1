@@ -1,5 +1,7 @@
 package Lesson_5;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class Main {
     static final int size = 10000000;
     static final int h = size / 2;
@@ -35,20 +37,30 @@ public class Main {
         long a = System.currentTimeMillis();
         System.arraycopy(arr, 0, a1, 0, h);
         System.arraycopy(arr, h, a2, 0, h);
-        new Thread(() -> {
+
+        AtomicBoolean m = new AtomicBoolean(false);
+        AtomicBoolean n = new AtomicBoolean(false);
+
+        Thread t1 = new Thread(() -> {
             for (int i = 0; i < a1.length; i++) {
                 a1[i] = (float) (a1[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
             }
-        }).start();
+            m.set(true);
+        });
 
-        new Thread(() -> {
+        Thread t2 = new Thread(() -> {
             for (int i = 0; i < a2.length; i++) {
-                a2[2] = (float) (a2[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+                a1[i] = (float) (a2[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
             }
-        }).start();
+            n.set(true);
+        });
+
+        t1.start();
+        t2.start();
+
+        while (!m.get() || !n.get()) {}
         System.arraycopy(a1, 0, arr, 0, h);
         System.arraycopy(a2, 0, arr, h, h);
-
         long b = System.currentTimeMillis();
         System.out.println(b - a);
     }
